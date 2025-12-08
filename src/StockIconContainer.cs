@@ -15,7 +15,7 @@ internal class StockIconContainer : MonoBehaviour
         
         StockIconContainer stockIconContainer = tf.gameObject.AddComponent<StockIconContainer>();
         stockIconContainer.stockIcons = new List<StockIcon>();
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < 10; i++)
         {
             StockIcon icon = StockIcon.CreateStockIcon(tf, $"stockIcon_{i}", i);
             stockIconContainer.stockIcons.Add(icon);
