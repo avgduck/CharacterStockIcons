@@ -41,6 +41,10 @@
       </Reference>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="packs-default\" />
+    </ItemGroup>
+
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
         <Copy SourceFiles="bin\Debug\net35\CharacterStockIcons.dll" DestinationFolder="build" />
 
@@ -50,8 +54,8 @@
         <Copy SourceFiles="@(_BuildFiles)" DestinationFolder="C:\Users\Owner\AppData\Roaming\r2modmanPlus-local\LethalLeagueBlaze\profiles\Dev\BepInEx\plugins\CharacterStockIcons" />
 
         <ItemGroup>
-            <_DefaultIcons Include="default\*.png" />
+            <_PackStadium Include="packs-default\stadium\*" />
         </ItemGroup>
-        <Copy SourceFiles="@(_DefaultIcons)" DestinationFolder="C:\Users\Owner\AppData\Roaming\r2modmanPlus-local\LethalLeagueBlaze\profiles\Dev\BepInEx\plugins\CharacterStockIcons\default" />
+        <Copy SourceFiles="@(_PackStadium)" DestinationFolder="C:\Users\Owner\AppData\Roaming\r2modmanPlus-local\LethalLeagueBlaze\profiles\Dev\BepInEx\plugins\CharacterStockIcons\packs-default\stadium" />
     </Target>
 </Project>
