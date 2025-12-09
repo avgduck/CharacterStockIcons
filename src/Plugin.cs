@@ -108,7 +108,7 @@ public class Plugin : BaseUnityPlugin
         }
         else
         {
-            iconPacksDefault.ToList().ForEach(entry => text.AddRange([$"- {entry.Key}", ""]));
+            iconPacksDefault.ToList().ForEach(entry => text.Add($"- {entry.Key}"));
         }
         
         text.Add("");
@@ -120,7 +120,7 @@ public class Plugin : BaseUnityPlugin
         }
         else
         {
-            iconPacksCustom.ToList().ForEach(entry => text.AddRange([$"- {entry.Key}", ""]));
+            iconPacksCustom.ToList().ForEach(entry => text.Add($"- {entry.Key}"));
         }
         
         return text;
