@@ -18,8 +18,8 @@ public class Plugin : BaseUnityPlugin
     private DirectoryInfo packDirectoryDefault;
     private DirectoryInfo packDirectoryCustom;
 
-    internal List<IconPack> iconPacksDefault;
-    internal List<IconPack> iconPacksCustom;
+    internal Dictionary<string, IconPack> iconPacksDefault;
+    internal Dictionary<string, IconPack> iconPacksCustom;
 
     internal IconPack selectedIconPack;
 
@@ -38,33 +38,43 @@ public class Plugin : BaseUnityPlugin
         packDirectoryCustom = new DirectoryInfo(pathCustom);
         
         LoadAllIconPacks();
-        if (iconPacksDefault.Count > 0) selectedIconPack = iconPacksDefault.First();
+        if (iconPacksDefault.Count > 0) selectedIconPack = iconPacksDefault.First().Value;
         
         HarmonyPatches.PatchAll();
     }
 
     private void LoadAllIconPacks()
     {
-        iconPacksDefault = new List<IconPack>();
+        iconPacksDefault = new Dictionary<string, IconPack>();
         foreach (DirectoryInfo packDir in packDirectoryDefault.GetDirectories().OrderBy(d => d.Name))
         {
             IconPack pack = new IconPack(packDir);
-            
+
+            if (iconPacksDefault.ContainsKey(pack.id))
+            {
+                LogGlobal.LogWarning($"Failed to load default icon pack '{pack.id}': pack with id '{pack.id}' already exists");
+                continue;
+            }
             if (!pack.isValid)
             {
-                LogGlobal.LogWarning($"Failed to load default icon pack '{pack.id}'");
+                LogGlobal.LogWarning($"Failed to load default icon pack '{pack.id}': invalid pack format");
                 continue;
             }
             
             LogGlobal.LogInfo($"Loaded default icon pack '{pack.id}'");
-            iconPacksDefault.Add(pack);
+            iconPacksDefault.Add(pack.id, pack);
         }
-        
-        iconPacksCustom = new List<IconPack>();
+
+        iconPacksCustom = new Dictionary<string, IconPack>();
         foreach (DirectoryInfo packDir in packDirectoryCustom.GetDirectories().OrderBy(d => d.Name))
         {
             IconPack pack = new IconPack(packDir);
             
+            if (iconPacksDefault.ContainsKey(pack.id) || iconPacksCustom.ContainsKey(pack.id))
+            {
+                LogGlobal.LogWarning($"Failed to load custom icon pack '{pack.id}': pack with id '{pack.id}' already exists");
+                continue;
+            }
             if (!pack.isValid)
             {
                 LogGlobal.LogWarning($"Failed to load custom icon pack '{pack.id}'");
@@ -72,7 +82,7 @@ public class Plugin : BaseUnityPlugin
             }
             
             LogGlobal.LogInfo($"Loaded custom icon pack '{pack.id}'");
-            iconPacksCustom.Add(pack);
+            iconPacksCustom.Add(pack.id, pack);
         }
     }
 }

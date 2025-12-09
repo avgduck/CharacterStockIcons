@@ -61,7 +61,7 @@ internal class IconPack
             Texture2D tex = LoadImageFile(file);
             Sprite sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
             icons.Add(CharacterFromName[characterName], sprite);
-            Plugin.LogGlobal.LogInfo($"Icon file '{file.Name}' loaded");
+            //Plugin.LogGlobal.LogInfo($"Icon file '{file.Name}' loaded");
         }
 
         foreach (KeyValuePair<string, Character> entry in CharacterFromName)
