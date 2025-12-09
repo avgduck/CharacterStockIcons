@@ -20,6 +20,12 @@ internal static class HarmonyPatches
         [HarmonyPostfix]
         private static void Awake_Postfix(GameHudPlayerInfo __instance)
         {
+            if (Plugin.Instance.selectedIconPack == null)
+            {
+                Plugin.LogGlobal.LogError("No valid icon pack selected! Check that the id is set correctly in the config");
+                return;
+            }
+            
             if (!__instance.showScore) return;
             if (GameSettings.current.UsePoints) return;
             
@@ -33,6 +39,7 @@ internal static class HarmonyPatches
         [HarmonyPostfix]
         private static void SetPlayer_Postfix(GameHudPlayerInfo __instance)
         {
+            if (Plugin.Instance.selectedIconPack == null) return;
             if (!__instance.showScore) return;
             if (GameSettings.current.UsePoints) return;
             
@@ -46,6 +53,8 @@ internal static class HarmonyPatches
         [HarmonyPostfix]
         private static void ShowStocks_Postfix(GameHudPlayerInfo __instance, int stocks)
         {
+            if (Plugin.Instance.selectedIconPack == null) return;
+            
             StockIconContainer stockIconContainer = __instance.transform.GetComponentInChildren<StockIconContainer>();
             stockIconContainer.ShowStocks(stocks);
         }
