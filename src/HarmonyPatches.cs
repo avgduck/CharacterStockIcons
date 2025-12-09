@@ -12,6 +12,9 @@ internal static class HarmonyPatches
         
         harmony.PatchAll(typeof(StockDisplayPatch));
         Plugin.LogGlobal.LogInfo("Stock display patch applied");
+        
+        harmony.PatchAll(typeof(IconPreviewPatch));
+        Plugin.LogGlobal.LogInfo("Icon preview patch applied");
     }
 
     private static class StockDisplayPatch
@@ -57,6 +60,16 @@ internal static class HarmonyPatches
             
             StockIconContainer stockIconContainer = __instance.transform.GetComponentInChildren<StockIconContainer>();
             stockIconContainer.ShowStocks(stocks);
+        }
+    }
+
+    private static class IconPreviewPatch
+    {
+        [HarmonyPatch(typeof(ScreenMenu), nameof(ScreenMenu.OnOpen))]
+        [HarmonyPostfix]
+        private static void OnOpen_Postfix(ScreenMenu __instance)
+        {
+            IconPreviewWindow.Create(__instance.gameObject.transform);
         }
     }
 }

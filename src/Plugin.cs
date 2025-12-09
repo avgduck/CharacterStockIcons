@@ -19,8 +19,8 @@ public class Plugin : BaseUnityPlugin
     private DirectoryInfo packDirectoryDefault;
     private DirectoryInfo packDirectoryCustom;
 
-    internal Dictionary<string, IconPack> iconPacksDefault;
-    internal Dictionary<string, IconPack> iconPacksCustom;
+    private Dictionary<string, IconPack> iconPacksDefault;
+    private Dictionary<string, IconPack> iconPacksCustom;
 
     internal IconPack selectedIconPack;
 
@@ -141,7 +141,7 @@ public class Plugin : BaseUnityPlugin
         }
         else
         {
-            LogGlobal.LogError($"Icon pack '{id}' does not exist!");
+            //LogGlobal.LogError($"Icon pack '{id}' does not exist!");
             selectedIconPack = null;
         }
     }
