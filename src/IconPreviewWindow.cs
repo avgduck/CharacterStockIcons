@@ -39,16 +39,14 @@ internal class IconPreviewWindow : MonoBehaviour
         imgBg.rectTransform.localPosition = new Vector2(0f, 10f);
         imgBg.color = Color.black;
         
-        RectTransform text = LLControl.CreatePanel(tfContainer, "lbSelected", -100f, 0f);
-        lbSelected = text.gameObject.AddComponent<TextMeshProUGUI>();
+        lbSelected = LLControl.CreatePanel(tfContainer, "lbSelected", -100f, 0f).gameObject.AddComponent<TextMeshProUGUI>();
         lbSelected.fontSize = FONT_SIZE;
         lbSelected.enableWordWrapping = false;
         lbSelected.alignment = TextAlignmentOptions.Right;
         lbSelected.color = Color.white;
         lbSelected.SetText("Stock icons:");
         
-        RectTransform text2 = LLControl.CreatePanel(tfContainer, "lbPack", 106f, 0f);
-        lbPack = text2.gameObject.AddComponent<TextMeshProUGUI>();
+        lbPack = LLControl.CreatePanel(tfContainer, "lbPack", 106f, 0f).gameObject.AddComponent<TextMeshProUGUI>();
         lbPack.fontSize = FONT_SIZE;
         lbPack.enableWordWrapping = false;
         lbPack.alignment = TextAlignmentOptions.Left;
@@ -76,7 +74,7 @@ internal class IconPreviewWindow : MonoBehaviour
         }
         
         tfContainer.gameObject.SetActive(true);
-        lbPack.color = Plugin.Instance.selectedIconPack == null ? Color.red : Color.white;
+        lbPack.color = Plugin.Instance.selectedIconPack == null ? Color.red : Color.green;
         lbPack.SetText(Plugin.Instance.selectedIconPack == null ? "NULL" : Plugin.Instance.selectedIconPack.id);
         iconPreviews.ForEach(preview => preview.UpdatePack());
     }
@@ -94,8 +92,7 @@ internal class IconPreviewWindow : MonoBehaviour
             
             this.characterName = characterName;
 
-            RectTransform text = LLControl.CreatePanel(rectTransform, "lbCharacter", -100f, 0f);
-            lbCharacter = text.gameObject.AddComponent<TextMeshProUGUI>();
+            lbCharacter = LLControl.CreatePanel(rectTransform, "lbCharacter", -100f, 0f).gameObject.AddComponent<TextMeshProUGUI>();
             lbCharacter.fontSize = FONT_SIZE;
             lbCharacter.color = Color.white;
             lbCharacter.alignment = TextAlignmentOptions.Right;
