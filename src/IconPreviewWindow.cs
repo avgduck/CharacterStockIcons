@@ -69,7 +69,7 @@ internal class IconPreviewWindow : MonoBehaviour
 
     private void Update()
     {
-        if (!ModDependenciesUtils.InModOptions())
+        if (!HarmonyPatches.IconPreviewPatch.isInModMenu)
         {
             tfContainer.gameObject.SetActive(false);
             return;

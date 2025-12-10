@@ -1,6 +1,8 @@
+using BepInEx;
 using HarmonyLib;
 using LLBML.Players;
 using LLBML.Settings;
+using LLBML.Utils;
 
 namespace CharacterStockIcons;
 
@@ -12,6 +14,12 @@ internal static class HarmonyPatches
         
         harmony.PatchAll(typeof(StockDisplayPatch));
         Plugin.LogGlobal.LogInfo("Stock display patch applied");
+
+        if (!ModDependenciesUtils.IsModLoaded(Plugin.DEPENDENCY_MODMENU))
+        {
+            Plugin.LogGlobal.LogWarning("ModMenu is not loaded. Skipping preview patch...");
+            return;
+        }
         
         harmony.PatchAll(typeof(IconPreviewPatch));
         Plugin.LogGlobal.LogInfo("Icon preview patch applied");
@@ -63,8 +71,24 @@ internal static class HarmonyPatches
         }
     }
 
-    private static class IconPreviewPatch
+    internal static class IconPreviewPatch
     {
+        internal static bool isInModMenu = false;
+        
+        [HarmonyPatch(typeof(ModMenu.ModMenu), "HandleModSubSettingsClick")]
+        [HarmonyPrefix]
+        private static void HandleModSubSettingsClick_Prefix(PluginInfo plugin)
+        {
+            isInModMenu = plugin.Metadata.GUID == Plugin.GUID;
+        }
+
+        [HarmonyPatch(typeof(ModMenu.ModMenu), "HandleQuitClick")]
+        [HarmonyPrefix]
+        private static void HandleQuitClick()
+        {
+            isInModMenu = false;
+        }
+        
         [HarmonyPatch(typeof(ScreenMenu), nameof(ScreenMenu.OnOpen))]
         [HarmonyPostfix]
         private static void OnOpen_Postfix(ScreenMenu __instance)
