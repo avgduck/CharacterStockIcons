@@ -1,0 +1,9 @@
+{
+  "name": "CharacterStockIcons",
+  "version_number": "1.0.0",
+  "website_url": "https://github.com/avgduck/CharacterStockIcons",
+  "description": "Replace the stock icons with smash-style stock icons for each character, supports custom icon packs",
+  "dependencies": [
+    "Glomzubuk-LLBModdingLib-0.10.4"
+  ]
+}
