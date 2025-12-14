@@ -37,7 +37,7 @@ internal class IconPreviewWindow : MonoBehaviour
         imgBg.rectTransform.ForceUpdateRectTransforms();
         imgBg.rectTransform.pivot = new Vector2(0.55f, 1f);
         imgBg.rectTransform.localPosition = new Vector2(0f, 10f);
-        imgBg.color = Color.black;
+        imgBg.color = new Color(0, 0, 0, 0.5f);
         
         lbSelected = LLControl.CreatePanel(tfContainer, "lbSelected", -100f, 0f).gameObject.AddComponent<TextMeshProUGUI>();
         lbSelected.fontSize = FONT_SIZE;

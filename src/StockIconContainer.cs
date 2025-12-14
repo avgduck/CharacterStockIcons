@@ -71,6 +71,7 @@ internal class StockIconContainer : MonoBehaviour
         internal void SetCharacter(Character character)
         {
             imgChar.sprite = Plugin.Instance.selectedIconPack.icons[character];
+            imgEmpty.sprite = Plugin.Instance.selectedIconPack.icons[Character.NONE];
         }
         
         internal void SetDisplay(bool active)
