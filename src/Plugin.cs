@@ -61,12 +61,12 @@ public class Plugin : BaseUnityPlugin
 
             if (iconPacksDefault.ContainsKey(pack.id))
             {
-                LogGlobal.LogWarning($"Failed to load default icon pack '{pack.id}': pack with id '{pack.id}' already exists");
+                LogGlobal.LogError($"Failed to load default icon pack '{pack.id}': pack with id '{pack.id}' already exists");
                 continue;
             }
             if (!pack.isValid)
             {
-                LogGlobal.LogWarning($"Failed to load default icon pack '{pack.id}': invalid pack format");
+                LogGlobal.LogError($"Failed to load default icon pack '{pack.id}': invalid pack format");
                 continue;
             }
             
@@ -81,12 +81,12 @@ public class Plugin : BaseUnityPlugin
             
             if (iconPacksDefault.ContainsKey(pack.id) || iconPacksCustom.ContainsKey(pack.id))
             {
-                LogGlobal.LogWarning($"Failed to load custom icon pack '{pack.id}': pack with id '{pack.id}' already exists");
+                LogGlobal.LogError($"Failed to load custom icon pack '{pack.id}': pack with id '{pack.id}' already exists");
                 continue;
             }
             if (!pack.isValid)
             {
-                LogGlobal.LogWarning($"Failed to load custom icon pack '{pack.id}'");
+                LogGlobal.LogError($"Failed to load custom icon pack '{pack.id}'");
                 continue;
             }
             

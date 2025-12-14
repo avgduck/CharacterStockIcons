@@ -64,10 +64,16 @@ internal class IconPack
             //Plugin.LogGlobal.LogInfo($"Icon file '{file.Name}' loaded");
         }
 
+        bool isMissingCharacters = false;
         foreach (KeyValuePair<string, Character> entry in CharacterFromName)
         {
-            if (!icons.ContainsKey(entry.Value)) Plugin.LogGlobal.LogWarning($"Icon pack '{id}' is missing an icon for character '{entry.Key}'");
+            if (!icons.ContainsKey(entry.Value))
+            {
+                Plugin.LogGlobal.LogWarning($"Icon pack '{id}' is missing an icon for character '{entry.Key}'");
+                isMissingCharacters = true;
+            }
         }
+        if (isMissingCharacters) return;
 
         isValid = true;
     }
