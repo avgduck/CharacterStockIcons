@@ -4,6 +4,7 @@ using System.Linq;
 using BepInEx;
 using BepInEx.Logging;
 using LLBML.Utils;
+using UnityEngine;
 
 namespace CharacterStockIcons;
 
@@ -26,6 +27,7 @@ public class Plugin : BaseUnityPlugin
     private Dictionary<string, IconPack> iconPacksCustom;
 
     internal IconPack selectedIconPack;
+    internal Sprite defaultIcon;
 
     private void Awake()
     {
@@ -50,6 +52,9 @@ public class Plugin : BaseUnityPlugin
         Config.SettingChanged += (sender, args) => OnConfigChanged();
         OnConfigChanged();
         ModDependenciesUtils.RegisterToModMenu(Info, GetModMenuText());
+        
+        Texture2D tex = Texture2D.blackTexture;
+        defaultIcon = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
     }
 
     private void LoadAllIconPacks()

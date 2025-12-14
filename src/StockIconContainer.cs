@@ -55,12 +55,12 @@ internal class StockIconContainer : MonoBehaviour
             icon.rectTransform = container;
             icon.index = index;
             
-            icon.imgChar = LLControl.CreateImage(container, Plugin.Instance.selectedIconPack.icons[Character.NONE]);
+            icon.imgChar = LLControl.CreateImage(container, Plugin.Instance.defaultIcon);
             icon.imgChar.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, ICON_SIZE);
             icon.imgChar.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, ICON_SIZE);
             icon.imgChar.rectTransform.localPosition = new Vector2(0f, 0f);
             
-            icon.imgEmpty = LLControl.CreateImage(container, Plugin.Instance.selectedIconPack.icons[Character.NONE]);
+            icon.imgEmpty = LLControl.CreateImage(container, Plugin.Instance.defaultIcon);
             icon.imgEmpty.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, ICON_SIZE);
             icon.imgEmpty.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, ICON_SIZE);
             icon.imgEmpty.rectTransform.localPosition = new Vector2(0f, 0f);
