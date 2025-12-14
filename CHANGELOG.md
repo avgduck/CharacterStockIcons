@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.0] - 
+## [1.0.0] - 12-13-2025
 
 _Initial release_
 
