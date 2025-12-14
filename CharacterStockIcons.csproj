@@ -74,5 +74,6 @@
         <Copy SourceFiles="@(_BuildFiles)" DestinationFolder="release" />
         <Copy SourceFiles="@(_ReleaseFiles)" DestinationFolder="release" />
         <Copy SourceFiles="@(_PackStadium)" DestinationFolder="release/BepInEx/plugins/packs-default/stadium" />
+        <Copy SourceFiles="@(_PackKlay)" DestinationFolder="release/BepInEx/plugins/packs-default/klay" />
     </Target>
 </Project>
