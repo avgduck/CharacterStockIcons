@@ -66,8 +66,10 @@
 
         <ItemGroup>
             <_PackStadium Include="packs-default\stadium\*" />
+            <_PackKlay Include="packs-default\klay\*" />
         </ItemGroup>
         <Copy SourceFiles="@(_PackStadium)" DestinationFolder="C:\Users\Owner\AppData\Roaming\r2modmanPlus-local\LethalLeagueBlaze\profiles\Dev\BepInEx\plugins\CharacterStockIcons\packs-default\stadium" />
+        <Copy SourceFiles="@(_PackKlay)" DestinationFolder="C:\Users\Owner\AppData\Roaming\r2modmanPlus-local\LethalLeagueBlaze\profiles\Dev\BepInEx\plugins\CharacterStockIcons\packs-default\klay" />
 
         <Copy SourceFiles="@(_BuildFiles)" DestinationFolder="release" />
         <Copy SourceFiles="@(_ReleaseFiles)" DestinationFolder="release" />
